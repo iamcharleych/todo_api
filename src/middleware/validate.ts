@@ -17,7 +17,9 @@ export function validate(schema: ZodSchema, field: RequestField = 'body') {
 			})
 		}
 
-		req[field] = result.data
+		// Store validated data where handlers can access it
+		// req.query/params are read-only in Express 5, so use res.locals
+		res.locals[field] = result.data
 		next()
 	}
 }
