@@ -1,9 +1,12 @@
 import { app } from './app.js'
 import { config } from './config.js'
+import { initDb } from './db/index.js'
 
-// launch server
-app.listen(config.PORT, '0.0.0.0', () => {
-	console.log(`Server running on http://localhost:${config.PORT} [${config.NODE_ENV}]`)
+// initialize DB then start server
+initDb().then(() => {
+	app.listen(config.PORT, '0.0.0.0', () => {
+		console.log(`Server running on http://localhost:${config.PORT} [${config.NODE_ENV}]`)
+	})
 })
 
 process.on('unhandledRejection', (reason) => {
