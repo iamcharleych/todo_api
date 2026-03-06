@@ -28,7 +28,7 @@ todosRouter.get(
 	'/:id', 
 	validate(idParamSchema, 'params'),
 	asyncHandler(async (req, res) => {
-		const todo = await todosService.getTodoById(req.params.id)
+		const todo = await todosService.getTodoById(Number(req.params.id))
 	
 		if (!todo) {
 			return res.status(404).json({
@@ -56,7 +56,7 @@ todosRouter.patch(
 	validate(idParamSchema, 'params'),
 	validate(updateTodoSchema),
 	asyncHandler(async (req, res) => {
-  		const todo = await todosService.updateTodo(req.params.id, req.body)
+  		const todo = await todosService.updateTodo(Number(req.params.id), req.body)
 
   		if (!todo) {
     		return res.status(404).json({
@@ -73,7 +73,7 @@ todosRouter.delete(
 	'/:id', 
 	validate(idParamSchema, 'params'),
 	asyncHandler(async (req, res) => {
-  		const deleted = await todosService.deleteTodo(req.params.id)
+  		const deleted = await todosService.deleteTodo(Number(req.params.id))
 
   		if (!deleted) {
     		return res.status(404).json({
