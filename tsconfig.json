@@ -1,0 +1,7 @@
+{
+	"compilierOptions" : {
+		"type": "module",
+		"outDir": "./dist",
+    	"rootDir": "./src"
+	}
+}
